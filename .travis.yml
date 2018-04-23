@@ -3,9 +3,6 @@ language: go
 go:
 - '1.10'
 
-script:
-- make build && make build-docker
-
 after_success:
   # Discord notification
   - curl -sL https://git.io/ss-notify-discord-travis | bash -s success $WEBHOOK_URL
