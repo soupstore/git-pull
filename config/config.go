@@ -5,9 +5,10 @@ import (
 )
 
 type Config struct {
-	DataFolder string `env:"DATA_FOLDER"`
+	DataFolder string `env:"DATA_FOLDER" default:"/etc/data"`
 	Repository string `env:"REPO"`
-	Branch     string `env:"BRANCH"`
+	Branch     string `env:"BRANCH" default:"master"`
+	SSHPath    string `env:"SSH_PATH" default:"/etc/creds/key"`
 }
 
 func Load() (config *Config, err error) {
