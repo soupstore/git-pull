@@ -41,15 +41,9 @@ func main() {
 
 // loads the ssh agent and loads the key for git
 func registerSSH(sshKeyPath string) error {
-	cmd := exec.Command("/bin/sh", "-c", `'eval "$(ssh-agent -s)"'`)
-	if err := cmd.Run(); err != nil {
-		log.Logger().Error(err.Error())
-		log.Logger().Fatal("Failed to start SSH agent")
-		return err
-	}
-
-	cmd = exec.Command("ssh-add", sshKeyPath)
-	if err := cmd.Run(); err != nil {
+	cmd := exec.Command("sh", "-c", "eval $(ssh-agent -s)", "&&", "ssh-add", sshKeyPath)
+	if out, err := cmd.CombinedOutput(); err != nil {
+		log.Logger().Info(string(out))
 		log.Logger().Error(err.Error())
 		log.Logger().Fatal("Failed to start SSH agent")
 		return err
