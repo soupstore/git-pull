@@ -32,6 +32,7 @@ func main() {
 	}
 }
 
+// clones the repository and checks out the branch into the target directory
 func cloneRepo(repository, branch, target string) {
 	log.Logger().Info("Cloning repository...")
 
@@ -44,6 +45,7 @@ func cloneRepo(repository, branch, target string) {
 	log.Logger().Info("Cloning repository [OK]")
 }
 
+// pulls from the upstream repository of the specified directory
 func pullRepo(target string) {
 	log.Logger().Info("Pulling repository...")
 
